@@ -89,6 +89,7 @@ class HTTPClient(object):
         code = 500
         body = ""
         
+        # get the host and port & connect to it
         host, port = self.get_host_port(url)
         self.connect(host,port)
         # grab the path here; in the case of no path, set the path to /
@@ -103,9 +104,11 @@ class HTTPClient(object):
         response = self.recvall(self.socket)
         self.close() # cLoSe yOuR sOckEtS
 
+        print(response)
+
         code = self.get_code(response)
         body = self.get_body(response)
-        
+
         return HTTPResponse(code, body)
 
     def POST(self, url, args=None):
@@ -114,6 +117,7 @@ class HTTPClient(object):
         body = ""
 
         # recycling this snippet of code from the GET handler
+        # get the host and port & connect to it
         host, port = self.get_host_port(url)
         self.connect(host,port)
         # grab the path here; in the case of no path, set the path to /
@@ -134,6 +138,8 @@ class HTTPClient(object):
         response = self.recvall(self.socket)
         self.close()
 
+        print(response)
+        
         code = self.get_code(response)
         body = self.get_body(response)
 
